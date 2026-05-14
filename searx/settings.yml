@@ -43,7 +43,7 @@ search:
   # Existing autocomplete backends: "360search", "baidu", "bing", "brave", "dbpedia", "duckduckgo", "google",
   # "yandex", "mwmbl", "naver", "seznam", "sogou", "startpage", "swisscows", "quark", "qwant", "wikipedia" -
   # leave blank to turn it off by default.
-  autocomplete: ""
+  autocomplete: "bing"
   # minimun characters to type before autocompleter starts
   autocomplete_min: 4
   # backend for the favicon near URL in search results.
@@ -104,7 +104,7 @@ server:
 
   secret_key: "ultrasecretkey"  # Is overwritten by ${SEARXNG_SECRET}
   # Proxy image results through SearXNG. Is overwritten by ${SEARXNG_IMAGE_PROXY}
-  image_proxy: false
+  image_proxy: true
   # 1.0 and 1.1 are supported
   http_protocol_version: "1.0"
   # POST queries are "more secure!" but are also the source of hard-to-locate
@@ -131,7 +131,7 @@ ui:
   templates_path: ""
   # query_in_title: When true, the result page's titles contains the query
   # it decreases the privacy, since the browser can records the page titles.
-  query_in_title: false
+  query_in_title: true
   # ui theme
   default_theme: simple
   # center the results ?
@@ -142,7 +142,7 @@ ui:
   # use codes from the 'locales' config section
   default_locale: ""
   # Open result links in a new tab by default
-  # results_on_new_tab: false
+  results_on_new_tab: true
   theme_args:
     # style of simple theme: auto, light, dark, black
     simple_style: auto
@@ -303,12 +303,12 @@ engines:
     engine: 360search
     shortcut: 360so
     timeout: 20.0
-    disabled: true
+    disabled: false
 
   - name: 360search videos
     engine: 360search_videos
     shortcut: 360sov
-    disabled: true
+    disabled: false
 
   - name: 9gag
     engine: 9gag
@@ -318,7 +318,7 @@ engines:
   - name: acfun
     engine: acfun
     shortcut: acf
-    disabled: true
+    disabled: false
 
   - name: adobe stock
     engine: adobe_stock
@@ -498,21 +498,21 @@ engines:
     categories: [general]
     engine: baidu
     shortcut: bd
-    disabled: true
+    disabled: false
 
   - name: baidu images
     baidu_category: images
     categories: [images]
     engine: baidu
     shortcut: bdi
-    disabled: true
+    disabled: false
 
   - name: baidu kaifa
     baidu_category: it
     categories: [it]
     engine: baidu
     shortcut: bdk
-    disabled: true
+    disabled: false
 
   - name: wikipedia
     engine: wikipedia
@@ -524,12 +524,12 @@ engines:
   - name: bilibili
     engine: bilibili
     shortcut: bil
-    disabled: true
+    disabled: false
 
   - name: bing
     engine: bing
     shortcut: bi
-    disabled: true
+    
 
   - name: bing images
     engine: bing_images
@@ -988,6 +988,7 @@ engines:
   - name: github
     engine: github
     shortcut: gh
+    disabled: true
 
   - name: github code
     engine: github_code
@@ -1034,22 +1035,27 @@ engines:
   - name: google
     engine: google
     shortcut: go
+    disabled: true
 
   - name: google images
     engine: google_images
     shortcut: goi
+    disabled: true
 
   - name: google news
     engine: google_news
     shortcut: gon
+    disabled: true
 
   - name: google videos
     engine: google_videos
     shortcut: gov
+    disabled: true
 
   - name: google scholar
     engine: google_scholar
     shortcut: gos
+    disabled: true
 
   - name: google play apps
     engine: google_play
@@ -1196,32 +1202,35 @@ engines:
     engine: jisho
     shortcut: js
     timeout: 3.0
-    disabled: true
+    disabled: false
 
   - name: karmasearch
     engine: karmasearch
     categories: [general, web]
     search_type: web
     shortcut: ka
+    disabled: true
 
   - name: karmasearch images
     engine: karmasearch
     categories: [images, web]
     search_type: images
     shortcut: kai
-    paging: false
+    paging: true
 
   - name: karmasearch videos
     engine: karmasearch
     categories: [videos, web]
     search_type: videos
     shortcut: kav
+    disabled: true
 
   - name: karmasearch news
     engine: karmasearch
     categories: [news, web]
     search_type: news
     shortcut: kan
+    disabled: true
 
   - name: kickass
     engine: kickass
@@ -1233,29 +1242,34 @@ engines:
       - https://kat.am
     shortcut: kc
     timeout: 4.0
+    disabled: true
 
   - name: lemmy communities
     engine: lemmy
     lemmy_type: Communities
     shortcut: leco
+    disabled: true
 
   - name: lemmy users
     engine: lemmy
     network: lemmy communities
     lemmy_type: Users
     shortcut: leus
+    disabled: true
 
   - name: lemmy posts
     engine: lemmy
     network: lemmy communities
     lemmy_type: Posts
     shortcut: lepo
+    disabled: true
 
   - name: lemmy comments
     engine: lemmy
     network: lemmy communities
     lemmy_type: Comments
     shortcut: lecom
+    disabled: true
 
   - name: library genesis
     engine: xpath
@@ -1766,7 +1780,7 @@ engines:
     categories: [general]
     engine: quark
     shortcut: qk
-    disabled: true
+    disabled: false
 
   - name: quark images
     quark_category: images
@@ -1780,7 +1794,7 @@ engines:
     engine: qwant
     shortcut: qw
     categories: [general, web]
-    disabled: true
+    disabled: false
 
   - name: qwant news
     qwant_categ: news
@@ -1828,6 +1842,7 @@ engines:
   - name: radio browser
     engine: radio_browser
     shortcut: rb
+    disabled: true
 
   - name: reddit
     engine: reddit
@@ -1889,7 +1904,7 @@ engines:
   - name: sogou
     engine: sogou
     shortcut: sogou
-    disabled: true
+    disabled: false
 
   - name: sogou images
     engine: sogou_images
@@ -1909,24 +1924,28 @@ engines:
   - name: soundcloud
     engine: soundcloud
     shortcut: sc
+    disabled: true
 
   - name: stackoverflow
     engine: stackexchange
     shortcut: st
     api_site: 'stackoverflow'
     categories: [it, q&a]
+    disabled: true
 
   - name: askubuntu
     engine: stackexchange
     shortcut: ubuntu
     api_site: 'askubuntu'
     categories: [it, q&a]
+    disabled: true
 
   - name: superuser
     engine: stackexchange
     shortcut: su
     api_site: 'superuser'
     categories: [it, q&a]
+    disabled: true
 
   - name: discuss.python
     engine: discourse
@@ -2118,6 +2137,7 @@ engines:
   - name: unsplash
     engine: unsplash
     shortcut: us
+    disabled: true
 
   - name: yandex
     engine: yandex
@@ -2149,10 +2169,12 @@ engines:
   - name: yahoo news
     engine: yahoo_news
     shortcut: yhn
+    disabled: true
 
   - name: youtube
     shortcut: yt
     engine: youtube_noapi
+    disabled: true
 
   - name: youtube_api
     # You can use the engine using the official stable API, but you need an API
@@ -2165,10 +2187,12 @@ engines:
   - name: dailymotion
     engine: dailymotion
     shortcut: dm
+    disabled: true
 
   - name: vimeo
     engine: vimeo
     shortcut: vm
+    disabled: true
 
   - name: wiby
     engine: json_engine
